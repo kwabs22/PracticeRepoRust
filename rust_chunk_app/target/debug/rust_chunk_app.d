@@ -1,0 +1,1 @@
+/workspaces/PracticeRepoRust/rust_chunk_app/target/debug/rust_chunk_app: /workspaces/PracticeRepoRust/rust_chunk_app/src/main.rs /workspaces/PracticeRepoRust/rust_chunk_app/src/simple_version.rs /workspaces/PracticeRepoRust/rust_chunk_app/src/struct_version.rs
