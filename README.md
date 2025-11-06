@@ -85,6 +85,42 @@ go -  go mod init appname (mod file for dependency management?) --> .go files an
 9. **bgfx** - Cross-platform rendering library
 10. **Allegro** - Game programming library for 2D games
 
+### Rust - AR/VR Libraries
+1. **openxrs** - Rust bindings for OpenXR, the standard for VR/AR applications
+2. **hotham** - Lightweight, high-performance game engine for standalone VR headsets
+3. **webxr** - Safe Rust API for WebXR, used in Servo browser
+4. **wgpu** - Cross-platform graphics API abstraction (Vulkan, Metal, DX12, WebGL)
+5. **gfx-rs** - Low-level graphics and compute abstraction library
+6. **bevy (with VR plugins)** - Game engine with experimental VR support via plugins
+7. **stereokit-rs** - Rust bindings for StereoKit mixed reality engine
+8. **rust-openvr** - OpenVR bindings for Valve's VR SDK
+9. **rapier** - Physics engine commonly used in VR game development
+10. **xrbevy** - Proof-of-concept OpenXR rendering for Bevy engine
+
+### Go - AR/VR Libraries
+1. **openvr-go** - Go wrapper for Valve's OpenVR SDK
+2. **g3n** - Go 3D game engine with potential VR applications
+3. **azul3d** - 3D game engine that can be adapted for VR
+4. **harfang3d (Go bindings)** - Cross-platform 3D visualization for VR/AR
+5. **carrot** - Multi-device AR framework using WebSockets and Go
+6. **go-gl** - Go bindings for OpenGL (foundation for VR rendering)
+7. **mathgl** - Math library for 3D graphics and VR calculations
+8. **webxr (Go implementations)** - WebXR implementations in Go for web-based VR
+
+**Note**: Go has limited native VR/AR library support compared to C++ and Rust. Most Go VR development uses wrappers around C/C++ libraries or focuses on backend services for VR applications.
+
+### C++ - AR/VR Libraries
+1. **OpenXR** - Industry standard API for VR/AR (Khronos Group)
+2. **OpenVR** - Valve's VR SDK for SteamVR and multiple headsets
+3. **Oculus SDK** - Official SDK for Meta Quest and Rift development
+4. **ARCore** - Google's AR platform with C++ NDK support
+5. **ARKit** - Apple's AR framework (C++ via Objective-C++)
+6. **ARToolKit** - Open-source AR tracking library for marker recognition
+7. **Vuforia** - Enterprise AR platform with C++ API
+8. **StereoKit** - Easy-to-use mixed reality library for HoloLens and VR
+9. **Annwvyn** - Open-source VR game engine built on Ogre3D
+10. **OSVR** - Open-source VR platform and SDK
+
 ---
 
 ## Example Projects and Resources
@@ -184,4 +220,104 @@ go -  go mod init appname (mod file for dependency management?) --> .go files an
 
 10. **Infernno/qt5-examples** - Qt 5 examples from official repository
     - https://github.com/Infernno/qt5-examples
+
+---
+
+## AR/VR Example Projects and Resources
+
+### Rust AR/VR Example Projects (10)
+
+1. **leetvr/hotham** - Lightweight VR game engine for standalone headsets with examples
+   - https://github.com/leetvr/hotham
+
+2. **Ralith/openxrs** - OpenXR bindings with Vulkan rendering examples
+   - https://github.com/Ralith/openxrs
+
+3. **krzentner/vr-rust-starter** - Example VR programs written in Rust
+   - https://github.com/krzentner/vr-rust-starter
+
+4. **rust-openvr/rust-openvr** - OpenVR bindings for Rust with examples
+   - https://github.com/rust-openvr/rust-openvr
+
+5. **servo/webxr** - WebXR bindings used in Servo browser
+   - https://github.com/servo/webxr
+
+6. **blaind/xrbevy** - Proof-of-concept OpenXR support for Bevy engine
+   - https://github.com/blaind/xrbevy
+
+7. **bevyengine/bevy** - VR discussions and experimental plugins (issues #1030, #115)
+   - https://github.com/bevyengine/bevy
+
+8. **Are We Game Yet - VR Section** - Curated list of Rust VR libraries
+   - https://arewegameyet.rs/ecosystem/vr/
+
+9. **Rust VR GitHub Organization** - Collection of VR-related Rust projects
+   - https://github.com/rustvr
+
+10. **Resolution Games Blog** - Real-world case study of using Rust for VR games
+    - https://www.resolutiongames.com/blog/programming-a-vr-game-using-rust
+
+### Go AR/VR Example Projects (10)
+
+1. **tbogdala/openvr-go** - Go wrapper for OpenVR with examples
+   - https://github.com/tbogdala/openvr-go
+
+2. **g3n/engine** - Go 3D engine with VR potential
+   - https://github.com/g3n/engine
+
+3. **carrot-ar/carrot** - Multi-device AR framework in Go
+   - https://github.com/carrot-ar/carrot
+
+4. **go-gl/gl** - Go bindings for OpenGL (foundation for VR)
+   - https://github.com/go-gl/gl
+
+5. **go-gl/mathgl** - Math library for 3D/VR applications
+   - https://github.com/go-gl/mathgl
+
+6. **HARFANG3D** - 3D engine with Go bindings for VR/AR
+   - https://www.harfang3d.com/
+
+7. **Azul3D** - 3D game engine written in Go
+   - https://azul3d.org/
+
+8. **Building a Go VR Platform Tutorial** - Reintech tutorial
+   - https://reintech.io/blog/building-go-based-virtual-reality-platform-developers-tutorial
+
+9. **go-gl/examples** - OpenGL examples in Go (VR rendering basics)
+   - https://github.com/go-gl/examples
+
+10. **mikeroyal/AR-VR-Guide** - Comprehensive AR/VR development guide
+    - https://github.com/mikeroyal/AR-VR-Guide
+
+### C++ AR/VR Example Projects (10)
+
+1. **KhronosGroup/OpenXR-SDK-Source** - Official OpenXR SDK with hello_xr example
+   - https://github.com/KhronosGroup/OpenXR-SDK-Source
+
+2. **KhronosGroup/OpenXR-Tutorials** - Official OpenXR tutorials
+   - https://github.com/KhronosGroup/OpenXR-Tutorials
+
+3. **maluoi/OpenXRSamples** - Concise OpenXR + DirectX 11 examples
+   - https://github.com/maluoi/OpenXRSamples
+
+4. **ValveSoftware/openvr** - OpenVR SDK with samples (hellovr_opengl)
+   - https://github.com/ValveSoftware/openvr
+
+5. **google-ar/arcore-android-sdk** - ARCore C++ NDK examples (hello_ar_c)
+   - https://github.com/google-ar/arcore-android-sdk
+
+6. **Ybalrid/Annwvyn** - Open-source VR game engine in C++
+   - https://github.com/Ybalrid/Annwvyn
+
+7. **sclark39/UE-VR-Code-Sample** - Unreal Engine VR C++ sample
+   - https://github.com/sclark39/UE-VR-Code-Sample
+
+8. **KhronosGroup/OpenXR-Hpp** - C++ language projection for OpenXR
+   - https://github.com/KhronosGroup/OpenXR-Hpp
+
+9. **KHeresy/openxr-simple-example** - Simple OpenXR with OpenGL + SDL2
+   - https://github.com/KHeresy/openxr-simple-example
+
+10. **mikeroyal/AR-VR-Guide** - Comprehensive guide covering AR/VR development
+    - https://github.com/mikeroyal/AR-VR-Guide
 
