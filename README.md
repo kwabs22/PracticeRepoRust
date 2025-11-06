@@ -321,3 +321,127 @@ go -  go mod init appname (mod file for dependency management?) --> .go files an
 10. **mikeroyal/AR-VR-Guide** - Comprehensive guide covering AR/VR development
     - https://github.com/mikeroyal/AR-VR-Guide
 
+---
+
+## Mobile Development Paths
+
+This section describes how to take desktop applications built with the above libraries and deploy them to mobile platforms (Android/iOS).
+
+### Rust → Mobile
+
+**Approach: Cross-Compilation + FFI Bindings**
+
+Rust code compiles to native mobile libraries that integrate with native apps:
+
+- **Android**: Compile Rust to `.so` shared library, integrate via JNI (Java Native Interface)
+- **iOS**: Compile Rust to `.a` static library, integrate via FFI with Swift/Objective-C
+- **Tools**:
+  - `cargo-mobile2` (from Tauri) - Automated mobile builds with `cargo android run` / `cargo apple run`
+  - `xbuild` - Cross-compilation tool for mobile platforms
+  - Android NDK + iOS SDK required
+
+**Library-Specific Mobile Support:**
+
+| Library | Mobile Support | Notes |
+|---------|---------------|-------|
+| **Tauri** | ✅ Native (2.0+) | Single codebase for desktop + mobile, officially supported since Oct 2024 |
+| **bevy** | 🟡 Experimental | Works via `cargo-mobile2`, requires mobile-specific plugins |
+| **macroquad** | ✅ Native | Built-in Android/iOS support, straightforward deployment |
+| **egui** | 🟡 Via Integration | Works through bevy_egui or macroquad integration |
+| **iced** | ⚠️ Limited | Experimental mobile support |
+| **dioxus** | ✅ Native | Designed for web/desktop/mobile from single codebase |
+
+**Path Complexity**: **Medium** - Requires cross-compilation setup but libraries handle most complexity
+
+### Go → Mobile
+
+**Approach: gomobile (Official Mobile Toolkit)**
+
+Go provides official mobile support through `gomobile`:
+
+- **Two modes**:
+  1. **gomobile bind**: Generate Java/Kotlin (Android) and Objective-C (iOS) bindings for Go packages
+  2. **gomobile build**: Build complete native apps (UI in Go)
+- **Integration**: Write business logic in Go, share across platforms, native UI optional
+- **Requirements**: Go 1.16+, Android SDK (Android), Xcode (iOS)
+
+**Library-Specific Mobile Support:**
+
+| Library | Mobile Support | Notes |
+|---------|---------------|-------|
+| **Fyne** | ✅ Native | `fyne package -os android/ios` - same codebase for desktop/mobile |
+| **ebiten** | ✅ Native | Built-in Android/iOS support, 2M+ downloads (Fishing Paradiso) |
+| **wails** | ⚠️ Desktop Only | Desktop-focused, no mobile support |
+| **g3n** | 🟡 Adaptable | Can compile for mobile but not optimized for it |
+| **OpenVR-Go** | ⚠️ VR Headsets | Primarily for PC VR, limited mobile VR support |
+
+**Path Complexity**: **Low-Medium** - Official tooling makes it straightforward, especially for Fyne/ebiten
+
+### C++ → Mobile
+
+**Approach: Native Platform Support (Most Mature)**
+
+C++ is a first-class citizen on both mobile platforms:
+
+- **Android**: Android NDK (Native Development Kit) with JNI bridge to Java/Kotlin
+- **iOS**: Objective-C++ allows direct C++ integration in Xcode
+- **Build Systems**: CMake (cross-platform), Gradle (Android), Xcode (iOS)
+- **Approach**: Shared C++ logic + platform-specific UI (common in production apps)
+
+**Library-Specific Mobile Support:**
+
+| Library | Mobile Support | Notes |
+|---------|---------------|-------|
+| **Qt** | ✅ Native | Write once, deploy to Android/iOS from single codebase (C++ + QML) |
+| **SDL2** | ✅ Native | Full Android/iOS support, commonly used for mobile games |
+| **raylib** | ✅ Native | Android/iOS support built-in, simpler than SDL2 |
+| **SFML** | 🟡 Experimental | Android/iOS support exists but marked experimental |
+| **Unreal Engine** | ✅ Production | AAA mobile game development, export to Android/iOS |
+| **Godot** | ✅ Production | One-click export to Android/iOS, lightweight |
+| **Dear ImGui** | 🟡 Via Integration | Works on mobile through SDL2/other backends |
+| **OpenXR** | ✅ Native | Quest (Android-based), future iOS support via Apple Vision Pro |
+| **ARCore/ARKit** | ✅ Native | Platform-specific but can share C++ code via NDK/Objective-C++ |
+
+**Path Complexity**: **Medium-High** - Most mature but requires platform-specific knowledge
+
+### Cross-Platform Game Engines (All Languages)
+
+**Automated Export - No Rewrite Needed:**
+
+| Engine | Languages | Mobile Path |
+|--------|-----------|-------------|
+| **Unity** | C# | One-click export to Android/iOS, AR Foundation for ARCore/ARKit |
+| **Unreal** | C++/Blueprints | Built-in mobile deployment, full AAA capabilities |
+| **Godot** | GDScript/C# | Export to Android/iOS, lightweight, great for 2D/3D |
+| **bevy (Rust)** | Rust | Via cargo-mobile2, experimental but functional |
+| **ebiten (Go)** | Go | Built-in mobile support via gomobile |
+
+### AR/VR → Mobile VR/AR
+
+**Special Considerations:**
+
+- **Mobile AR**: ARCore (Android) + ARKit (iOS) are platform-specific but share logic via:
+  - Unity AR Foundation (C#) - Single API for both
+  - Flutter AR plugins - Dart abstraction layer
+  - Native C++ core with platform-specific bridges
+
+- **Mobile VR**:
+  - **Meta Quest** (Android-based): OpenXR, Oculus SDK, Unity, Unreal
+  - **Apple Vision Pro** (iOS-based): Native Swift/C++, Unity
+  - Cross-platform: OpenXR (emerging standard)
+
+### Summary Table: Rewrite vs. Refactor vs. Automated Port
+
+| Language | Typical Path | Effort Level | Best For |
+|----------|--------------|--------------|----------|
+| **Rust** | **Cross-compile + thin native shell** | Medium | Shared business logic, high-performance cores |
+| **Go** | **gomobile bind (minimal refactor)** | Low-Medium | Backend logic sharing, simple UIs with Fyne/ebiten |
+| **C++** | **Direct integration (no rewrite)** | Medium-High | Maximum performance, game engines, AR/VR |
+| **Qt/Tauri** | **Automated (same codebase)** | Low | Full apps with minimal platform-specific code |
+| **Game Engines** | **Automated export** | Very Low | Games and interactive content |
+
+**Key Insight**: Most modern libraries support mobile through **cross-compilation** rather than rewrites. The main work is:
+1. Setting up build toolchains (cargo-mobile2, gomobile, NDK)
+2. Creating platform-specific UI layers (if needed)
+3. Handling platform-specific APIs (permissions, sensors, etc.)
+
